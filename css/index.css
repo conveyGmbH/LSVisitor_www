@@ -1,0 +1,567 @@
+﻿.status-on-off {
+    background-color: transparent;
+}
+
+.navigationbar-container {
+    background-color: Window;
+    color: ButtonText;
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.masterhost-container .pagecontrol {
+    background-color: transparent;
+    /*
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: transparent;
+    */
+}
+/*
+.win-selectionstylefilled.win-listview .win-selected {
+    background-color: #e0e0e0;
+    color: HighlightText;
+}
+*/
+
+.navigationbar-container-horizontal {
+    height: 48px;
+    z-index: -10000;
+}
+.navigationbar-container-vertical {
+    width: 244px;
+    z-index: -10001;
+}
+.headerhost-container {
+    z-index: 10002;
+}
+
+#root-split-view-toggle {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    z-index: 10011;
+}
+
+#root-split-view {
+    margin-top: 0;
+    height: calc(100% - 48px);
+}
+#root-split-view-pane {
+    overflow-y: auto;
+}
+#root-split-view.win-splitview-pane-opened.rootsplitview-mobile .win-splitview-panewrapper,
+#root-split-view.win-splitview-pane-opened.rootsplitview-mobile .win-splitview-pane {
+    width:100%;
+}
+#root-split-view.win-splitview-pane-opened.rootsplitview-tablet .win-splitview-pane,
+#root-split-view.win-splitview-pane-opened.rootsplitview-full .win-splitview-pane {
+    width:280px
+}
+
+.win-splitviewcommand-button-content {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.win-splitviewcommand-label {
+    color: WindowText;
+    font-size: 20px;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.win-splitviewcommand.win-disabled {
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.2;
+}
+html.win-hoverable .win-disabled .win-splitviewcommand-button:hover {
+    background-color: transparent;
+}
+html.win-hoverable .win-disabled .win-splitviewcommand-button:hover.win-pressed {
+    background-color: transparent;
+}
+
+#navigationbar_horizontal .win-selected,
+#navigationbar_vertical .win-selected {
+    color: WindowText;
+}
+#navigationbar_horizontal.win-listview {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 47px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+}
+
+#navigationbar_vertical.win-listview {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 1px);
+    height: 100%;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: gray;
+}
+
+#navigationbar_horizontal .win-viewport {
+    margin-bottom: -50px;
+    padding-bottom: 50px;
+    -ms-overflow-style: none;
+}
+
+#navigationbar_horizontal .win-viewport::-webkit-scrollbar {
+    height: 0 !important;
+}
+
+#navigationbar_horizontal .win-selectionbackground {
+    height: 4px;
+    top: 43px;
+    left: 0;
+    width: 0;
+}
+#navigationbar_vertical .win-selectionbackground {
+    width: 4px;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+}
+
+.navigationbar-horizontal-template,
+.navigationbar-vertical-template {
+    margin: 0;
+    padding: 0;
+}
+
+.navigationbar-item {
+    height: 48px;
+}
+
+.navigationbar-horizontal-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navigationbar-vertical-item {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 2px);
+}
+
+.navigationbar-text {
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 0;
+    padding-right: 0;
+    height: 36px;
+    text-transform: uppercase;
+    display: inherit;
+}
+.navigationbar-text-gray {
+    color: #a0a0a0;
+}
+
+
+.navigationbar-horizontal-text {
+    padding-left: 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: -2px;
+}
+
+.navigationbar-vertical-text {
+    padding-left: 12px;
+    text-align: left;
+    width: calc(100% - 12px);
+}
+
+.navigationbar-inner-text {
+
+}
+
+#navigationbar_horizontal .win-itemscontainer {
+    width: 100%;
+}
+
+#navigationbar_vertical .win-itemscontainer {
+    width: 100%;
+}
+
+#navigationbar_horizontal .win-container {
+    margin: 0;
+    padding: 0;
+    width: 1px;
+}
+#navigationbar_vertical .win-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+/* Flyout buttons */
+#alertFlyout {
+    visibility: hidden;
+    margin-top: 48px;
+    box-shadow: rgba(0, 0, 0, 0.133) 1.0px 1.6px 3.6px 0.6px, rgba(0, 0, 0, 0.11) 0.4px 0.6px 0.9px 0px;
+}
+
+#alertText {
+    white-space: pre-wrap;
+}
+
+.win-flyout:not(.win-menu) button,
+.win-flyout:not(.win-menu) input[type="button"]
+{
+    margin-top: 16px;
+    margin-left: 20px;
+    float: right;
+}
+
+/*
+    margins/paddings for small screens and orientation vertical
+@media (max-width:499px) {
+}
+*/
+.view-size-small .navigationbar-text {
+    padding-top: 14px;
+    font-size: 15px;
+}
+.view-size-small .win-splitviewcommand-label {
+    font-size: 15px;
+    margin-top: 16px;
+}
+
+/*
+    appHeader styles:
+*/
+
+
+/*
+    toggle button background
+*/
+.bkg-splitviewpanetoggle {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 48px;
+    height: 48px;
+    opacity: 0.6;
+}
+
+.pagetitle-placeholder {
+    width: calc(100% - 200px);
+    float: left;
+    margin-top: 0;
+}
+
+.titlearea {
+    padding: 0;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 48px;
+    z-index: 10010;
+}
+
+#accountbutton {
+    color: black !important;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 20px;
+    display: inline-block;
+}
+
+    #accountbutton:hover {
+        color: black !important;
+        background: #d4d4d4;
+        border-color: #d4d4d4 !important;
+        transition: all 0.4s ease 0s;
+    }
+
+#logoffbutton {
+    color: #ed3330 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 20px;
+    display: inline-block;
+}
+
+    #logoffbutton:hover {
+        color: #ffffff !important;
+        font-weight: bold;
+        background: #ed3330;
+        border-color: #ed3330 !important;
+        transition: all 0.4s ease 0s;
+    }
+
+#menu1 {
+    border-color: #d4d4d4;
+}
+/*
+    event name
+*/
+.event-line {
+    width: calc(100% - 284px);
+    margin-left: 40px;
+    margin-top: 0;
+    padding-top: 4px;
+    float: left;
+}
+
+.app-logo-container {
+    height: 100%;
+    margin-left: 20px;
+    margin-top: 0;
+    padding: 0;
+    float: left;
+    display: inline;
+}
+.app-logo {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    /*margin-left: -15px;*/
+}
+
+.event-field {
+    width: calc(100% - 278px);
+    float: right;
+    margin-top: 8px;
+}
+
+.event-name {
+    width: 100%;
+}
+
+.publish-button {
+    background-color: #f2f2f2;
+    color: #ed3330;
+    width: 128px;
+    padding: 2px 6px;
+    display: block;
+    position: relative;
+    margin-left: calc(100% - 128px);
+    margin-top: -22px;
+}
+
+/*
+    user name and on-site / off-site button
+*/
+
+.status-on-off {
+    margin: 0;
+    padding-top: 2px;
+    padding-right: 4px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    min-width: 60px;
+    max-width: 236px;
+    height: 48px;
+    visibility: hidden;
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+.user-name-container {
+    float: left;
+    padding: 4px 40px 4px 4px;
+    text-align: right;
+    white-space: nowrap;
+    max-width: 196px;
+}
+
+.namefieldsizebig {
+    font-size: 18px;
+}
+
+.user-name-field {
+    font-size: 15px;
+}
+
+.user-overlay-container {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: calc(100% - 40px);
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 0;
+}
+
+.user-image-container {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: calc(100% - 40px);
+    background-color: gray;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    overflow: hidden;
+    z-index: 9900;
+}
+
+.user-image {
+    display: block;
+    position: relative;
+    left: 0;
+    top: 6px;
+    z-index: 9900;
+}
+
+.user-photo {
+    display: block;
+    position: relative;
+    left: 0px;
+    top: -32px;
+    width: auto;
+    height: 40px;
+    z-index: 9900;
+}
+
+.onsite-offsite {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f0f0f0;
+    display: block;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    z-index: 10000;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.onsite-offsite-symbol {
+    font-family: "Symbols";
+    padding: 16px;
+    display: block;
+    position: relative;
+    left: -14px;
+    top: -15px;
+}
+
+.new-message {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f0f0f0;
+    display: block;
+    position: relative;
+    left: 20px;
+    top: -22px;
+    z-index: 10000;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.new-message-symbol {
+    font-family: "Symbols";
+    padding: 16px;
+    display: block;
+    position: relative;
+    left: -14px;
+    top: -15px;
+}
+
+.statusNew {
+    background-color: blue;
+    color: white;
+}
+
+.statusOn {
+    background-color: forestgreen;
+    color: white;
+}
+
+.statusOff {
+    background-color: red;
+    color: white;
+}
+
+/*@media (max-width:899px) {
+    .app-logo-container {
+        display: none;
+    }
+
+    .event-line {
+        margin-left: 52px;
+        width: calc(100% - 180px);
+    }
+
+    .event-field {
+        width: 100%;
+        float: left;
+    }
+}*/
+
+@media (max-width:499px) {
+    .status-on-off {
+        max-width: 200px;
+    }
+
+    .user-name-container {
+        padding-top: 4px;
+    }
+    /*
+    .event-line {
+        width: calc(100% - 180px);
+        display: block;
+        position: absolute;
+        top: 13px;
+        left: 0;
+    }
+    .event-name-static {
+        position: relative;
+        top: -5px;
+    }
+
+    */
+    .event-name {
+        font-size: 15px;
+    }
+
+    .user-name-field {
+        font-size: 12px;
+        line-height: 1.167;
+    }
+}
+
+.win-commandingsurface .win-commandingsurface-actionarea {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: gray;
+}
+
+.win-commandingsurface .win-commandingsurface-actionarea .leftmost {
+    position: absolute;
+    left: 0;
+}

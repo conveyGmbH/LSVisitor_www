@@ -1,0 +1,11 @@
+﻿/*
+    uservcard private styles
+*/
+.userinfo-qrcode-container {
+    padding: 20px;
+    background-color: white;
+}
+
+.userinfo-qrcode {
+    width: 100%;
+}

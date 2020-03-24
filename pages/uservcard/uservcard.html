@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="uservcard.css" rel="stylesheet" />
+    <script type="text/javascript" src="uservcardService.js"></script>
+    <script type="text/javascript" src="uservcardController.js"></script>
+    <script type="text/javascript" src="uservcard.js"></script>
+</head>
+
+<body class="win-type-body">
+     <div class="uservcard fragment">
+         <div id="userInfoController" class="data-container">
+             <section aria-label="Main content" role="main" class="animationElement">
+                 <div class="contentarea win-type-body">
+                     <div class="header-separator"></div>
+                     <div class="content-header">
+                         <div class="half-circle half-circle-textcolor">&nbsp;</div>
+                         <div class="content-header-line win-type-caption">
+                             <span class="id-field"></span>
+                             <span class="caption-field" data-win-res="{textContent: 'uservcard.title'}"></span>
+                             <span class="date-field"></span>
+                         </div>
+                     </div>
+                     <div class="field_line field_line_odd userinfo-qrcode-container"></div>
+                     <div class="line-separator"
+                          data-win-bind="style.display: dataBenutzer.Titel Binding.Converter.toDisplay"></div>
+                     <div class="field_line field_line_odd"
+                          data-win-bind="style.display: dataBenutzer.Titel Binding.Converter.toDisplay">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.academicTitle'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.academicTitle'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Titel"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.firstName'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.firstName'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Vorname"></span>
+                     </div>
+                     <div class="field_line field_line_even" style="overflow-y: hidden">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.name'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.name'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Name"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.position'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.position'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Position"></span>
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.url'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.url'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.WebAdresse"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.company'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.company'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Firmenname"></span>
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.address'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.address'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Strasse"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only_left" data-win-res="{textContent: 'uservcard.zip'}"></span>
+                         <span class="label win-type-caption portrait_only_right" data-win-res="{textContent: 'uservcard.city'}"></span>
+                         <div class="label landscape_only">
+                             <span data-win-res="{textContent: 'uservcard.zip'}"></span> / <span data-win-res="{textContent: 'uservcard.city'}"></span>
+                         </div>
+                         <div class="input_group">
+                             <span class="input_small_left win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.PLZ"></span>
+                             <span class="input_small_right win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Stadt"></span>
+                         </div>
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.country'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.country'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: InitLandItem.TITLE"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.email'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.email'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.EMail"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.phone'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.phone'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.TelefonFestnetz"></span>
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.mobile'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.mobile'}"></span>
+                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.TelefonMobil"></span>
+                     </div>
+                 </div>
+                     <div class="error-message"
+                          data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>
+             </section>
+         </div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿#doEdit .win-toggleswitch-header,
+#doReloadDb .win-toggleswitch-header,
+#https .win-toggleswitch-header,
+#useOffline .win-toggleswitch-header,
+#useDBUser .win-toggleswitch-header
+{
+    display: none;
+}
+#privacyPolicyLink {
+    margin-left: 36px;
+}

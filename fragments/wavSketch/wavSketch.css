@@ -1,0 +1,15 @@
+﻿#wavSketchController .doc-container {
+    float: left;
+    width: 100%;
+}
+
+#noteAudio.player {
+    width: 100%;
+    /*height: calc(100% - 8px);*/
+}
+
+.audio-recorder-container {
+    display: none;
+    width: 100%;
+    height: calc(100% - 8px);
+}

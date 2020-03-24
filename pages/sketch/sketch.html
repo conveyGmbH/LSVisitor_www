@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="sketch.css" rel="stylesheet" />
+    <script type="text/javascript" src="sketchService.js"></script>
+    <script type="text/javascript" src="sketchController.js"></script>
+    <script type="text/javascript" src="sketch.js"></script>
+</head>
+<body class="win-type-body">
+    <div class="sketch fragment">
+        <div id="sketchController" class="data-container">
+            <section aria-label="Main content" role="main" class="animationElement">
+                <div class="contentarea content-noscroll win-type-body">
+                    <div class="header-separator"></div>
+                    <div class="content-header">
+                        <div class="half-circle half-circle-textcolor">&nbsp;</div>
+                        <div class="content-header-line win-type-caption">
+                            <span class="id-field" data-win-bind="textContent: generalData.globalContactID"></span>
+                            <span class="caption-field" data-win-res="{textContent: 'sketch.title'}"></span>
+                            <span class="date-field" data-win-bind="textContent: generalData.contactDate Binding.Converter.toDateString"></span>
+                        </div>
+                    </div>
+                    <div data-win-bind="style.display: showSvg Binding.Converter.toDisplay">
+                        <div id="svghost" class="sketchfragmenthost"></div>
+                    </div>
+                    <div data-win-bind="style.display: showPhoto Binding.Converter.toDisplay">
+                        <div id="imghost" class="sketchfragmenthost"></div>
+                    </div>
+                    <div data-win-bind="style.display: showAudio Binding.Converter.toDisplay">
+                        <div id="wavhost" class="sketchfragmenthost"></div>
+                    </div>
+                    <div data-win-bind="style.display: showList Binding.Converter.toDisplay">
+                        <div id="listhost" class="row-bkg listfragmenthost"></div>
+                    </div>
+                    <div id="addNotesToolbar" class="add-box box-bkg">
+                        <button id="comment" class="win-button shape add-button"
+                                onclick="AppBar.handleEvent('click', 'clickAddComment', event)">
+                            <div id="font" class="tool-image"></div>
+                        </button>
+                        <button id="photo" class="win-button shape add-button"
+                                data-win-bind="style.display: hideAddImg Binding.Converter.toDisplayNone"
+                                onclick="AppBar.handleEvent('click', 'clickAddImg', event)">
+                            <div id="camera" class="tool-image"></div>
+                        </button>
+                        <button id="audio" class="win-button shape add-button"
+                                onclick="AppBar.handleEvent('click', 'clickAddWav', event)">
+                            <div id="microphone" class="tool-image"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="error-message" 
+                     data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

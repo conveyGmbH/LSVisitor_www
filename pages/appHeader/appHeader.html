@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="appHeader.css" rel="stylesheet"/>
+    <script type="text/javascript" src="appHeaderService.js"></script>
+    <script type="text/javascript" src="appHeaderController.js"></script>
+    <script type="text/javascript" src="appHeader.js"></script>
+</head>
+<body class="win-type-body">
+    <div class="appHeader fragment">
+        <div id="appHeaderController" class="data-container">
+            <header aria-label="Header content" role="banner">
+                <div class="titlearea titlearea-bkg">
+                    <div>
+                        <button class="win-button titlearea-bkg app-logo-container"
+                                onclick="AppBar.handleEvent('click', 'clickListStartPage', event)">
+                            <div class="app-logo" id="LSVisitor_white"></div> <!--NBGLogo-->
+                        </button>
+                        <!--<div class="event-field win-type-ellipsis">
+                            <span class="win-type-subtitle event-name event-name-static"
+                                  data-win-bind="textContent: userData.VeranstaltungName"></span>
+                        </div>-->
+                    </div>
+                    <button class="win-button status-on-off titlearea-bkg"
+                            data-win-bind="style.visibility: userData.Login Binding.Converter.emptyToHidden"
+                            onclick="AppBar.handleEvent('click', 'clickChangeUserState', event)">
+                        <div id="username" class="user-name-container">
+                            <span class="user-name-field win-type-ellipsis"
+                                  data-win-bind="textContent: userData.Name; style.display: showNameInHeader Binding.Converter.toDisplayNone"></span>
+                            <span class="user-name-field win-type-ellipsis"
+                                  data-win-bind="textContent: userData.Name; style.display: showNameInHeader Binding.Converter.toDisplay"></span>
+                        </div>
+                        <div class="user-image-container">
+                            <div class="user-image" id="user"></div>
+                        </div>
+                        <div class="user-overlay-container">
+                            <div class="onsite-offsite win-type-caption">
+                                <span class="onsite-offsite-symbol statusOn"
+                                      data-win-bind="style.display: userData.Present Binding.Converter.toDisplay">&#xe10b;</span>
+                                <span class="onsite-offsite-symbol statusOff"
+                                      data-win-bind="style.display: userData.Present Binding.Converter.toDisplayNone">&#xe108;</span>
+                            </div>
+                            <div class="new-message win-type-caption"
+                                 data-win-bind="style.display: userData.NewNoteCount Binding.Converter.toDisplay">
+                                <span class="new-message-symbol statusNew">&#xe134;</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </header>
+        </div>
+    </div>
+ </body>
+</html>

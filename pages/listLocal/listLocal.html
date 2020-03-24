@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="listLocal.css" rel="stylesheet" />
+    <script type="text/javascript" src="listLocalService.js"></script>
+    <script type="text/javascript" src="listLocalController.js"></script>
+    <script type="text/javascript" src="listLocal.js"></script>
+    <script type="text/javascript" src="exportXlsx.js"></script>
+</head>
+<body class="win-type-body">
+    <div class="listLocal fragment">
+        <div id="listLocalController" class="data-container">
+            <section aria-label="Main content" role="main" class="animationElement">
+                <div class="contentarea win-type-body">
+                    <div class="headerFooterPlaceholder">
+                        <div class="list-header">
+                            <div class="header-separator"></div>
+                            <div class="content-header">
+                                <div class="half-circle half-circle-textcolor">&nbsp;</div>
+                                <div class="content-header-line win-type-caption">
+                                    <div class="idAndDate win-type-caption">
+                                        <span class="id-field"></span>
+                                        <!--<span class="caption-field" data-win-res="{textContent: 'listLocal.title'}"></span>-->
+                                        <span class="date-field"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-landscape-only list-header-columns">
+                                <div class="list-field-small-fixed"
+                                     data-win-res="{textContent: 'listLocal.editedOn'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.company'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.name'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.firstName'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.address'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.zip'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.city'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.country'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.phone'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.mobile'}"></div>
+                                <div class="list-field-small-relative"
+                                     data-win-res="{textContent: 'listLocal.email'}"></div>
+                                <div class="list-field-small-fixed">ID</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listLocalContacts-template"
+                         data-win-control="WinJS.Binding.Template" style="display: none">
+                        <div class="list-landscape-only">
+                            <div class="row-bkg-gray"
+                                 data-win-bind="style.display: index Binding.Converter.oddToDisplay"></div>
+                            <div class="list-field-small-fixed win-type-ellipsis"
+                                 data-win-bind="textContent: Erfassungsdatum Binding.Converter.toDateString"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Firmenname"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Name"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Vorname"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Strasse"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: PLZ"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Stadt"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: Land"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: TelefonFestnetz"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: TelefonMobil"></div>
+                            <div class="list-field-small-relative win-type-ellipsis"
+                                 data-win-bind="textContent: EMail"></div>
+                            <div class="list-field-small-fixed win-type-ellipsis"
+                                 data-win-bind="textContent: globalContactId"></div>
+                        </div>
+                        <div class="list-portrait-only">
+                            <div class="row-bkg"></div>
+                            <div class="row-separator"></div>
+                            <!--<div class="list-item-header-full">-->
+                                <div class="list-item-label-right win-type-caption">
+                                    <!--<span data-win-bind="textContent: globalContactId"></span>-->
+                                </div>
+                                <div class="list-item-label-right win-type-caption">
+                                    <span data-win-bind="textContent: Erfassungsdatum Binding.Converter.toDateString"></span>
+                                    <!--<div class="list-div-right"
+                                         data-win-bind="style.display: InTransmission Binding.Converter.toDisplay">
+                                        <div id="clock" class="status-image"></div>
+                                    </div>
+                                    <div class="list-div-right"
+                                         data-win-bind="style.display: Sent Binding.Converter.toDisplay">
+                                        <div id="check" class="status-image"></div>
+                                    </div>
+                                    <div class="list-div-right"
+                                         data-win-bind="style.display: ReturnedModified Binding.Converter.toDisplay">
+                                        <div id="checks" class="status-image"></div>
+                                    </div>-->
+                                </div>
+                            <!--</div>-->
+                            <div class="list-compressed-content-doc-container text-textcolor">
+                                <div class="list-compressed-title">
+                                    <span style="font-weight: bold;" class="win-type-base" data-win-bind="textContent: company"></span>
+                                </div>
+                                <div class="list-compressed-title">
+                                    <span class="win-type-subtitle" data-win-bind="textContent: fullName"></span>
+                                </div>
+                                <div class="list-compressed-title" data-win-bind="style.display: HalleStandNr Binding.Converter.toDisplay">
+                                    <span style="font-weight: bold;" class="win-type-base" data-win-res="{textContent: 'listLocal.hallBoothNr'}"></span>
+                                    <span style="font-weight: bold;" class="win-type-base" data-win-bind="textContent: HalleStandNr"></span>
+                                </div>
+                                <div data-win-control="WinJS.UI.Rating" data-win-bind="winControl.userRating: Bewertung" data-win-options="{ disabled : true}"></div>
+                            </div>
+                            <!--<div class="list-compressed-doc-container" data-win-bind="style.display: OvwContentDOCCNT3 Binding.Converter.toDisplay">
+                                <img class="list-compressed-doc" data-win-bind="src: OvwContentDOCCNT3">
+                            </div>-->
+                            <div class="list-compressed-svg-container">
+                                <div data-win-bind="name: svgSource" class="action-image-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="headerFooterPlaceholder">
+                        <div class="list-footer">
+                            <div class="status">
+                                <progress class="win-progress-bar progress"></progress>
+                                <div class="counter">
+                                    <span data-win-res="{textContent: 'listLocal.count'}"></span><span>: </span><span data-win-bind="textContent: count"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="listLocalContacts"
+                         class="listview"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                             layout : { type: WinJS.UI.ListLayout },
+                                itemTemplate: select('.listLocalContacts-template'),
+                                header: select('.list-header'),
+                                footer: select('.list-footer')
+                         }">
+                    </div>
+                </div>
+                <!--<div class="error-message"
+                     data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>-->
+            </section>
+        </div>
+    </div>
+</body>
+</html>

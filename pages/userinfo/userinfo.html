@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="userinfo.css" rel="stylesheet" />
+    <script type="text/javascript" src="userinfoService.js"></script>
+    <script type="text/javascript" src="userinfoController.js"></script>
+    <script type="text/javascript" src="userinfo.js"></script>
+</head>
+
+<body class="win-type-body">
+     <div class="userinfo fragment">
+         <div id="userInfoController" class="data-container">
+             <section aria-label="Main content" role="main" class="animationElement">
+                 <div class="contentarea win-type-body">
+                     <div class="header-separator"></div>
+                     <div class="content-header">
+                         <div class="half-circle half-circle-textcolor">&nbsp;</div>
+                         <div class="content-header-line win-type-caption">
+                             <span class="id-field"></span>
+                             <span class="caption-field" data-win-res="{textContent: 'userinfo.title'}"></span>
+                             <span class="date-field"></span>
+                         </div>
+                     </div>
+                     <div class="line-separator"></div>
+                     <!--<div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.presence'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.presence'}"></span>
+                         <div class="input_field toggle-switch-parent">
+                             <div id="presentSwitch" class="input_field"
+                                  data-win-control="WinJS.UI.ToggleSwitch"
+                                  data-win-options="{labelOn : '', labelOff: ''}"
+                                  data-win-bind="winControl.checked: dataBenutzer.Present Binding.Converter.toBoolean"
+                                  onchange="AppBar.handleEvent('change', 'clickChangeState', event)">
+                             </div>
+                         </div>
+                         <div class="input_field userState_field">
+                             <span class="win-type-subtitle portrait_only statusOn" data-win-bind="textContent: generalData.present; style.display: dataBenutzer.Present Binding.Converter.toDisplay"></span>
+                             <span class="win-type-subtitle portrait_only statusOff" data-win-bind="textContent: generalData.absend; style.display: dataBenutzer.Present Binding.Converter.toDisplayNone"></span>
+                             <span class="win-type-subtitle landscape_only statusOff" data-win-bind="textContent: generalData.absend; style.display: dataBenutzer.Present Binding.Converter.toDisplayNone"></span>
+                             <span class="win-type-subtitle landscape_only statusOn" data-win-bind="textContent: generalData.present; style.display: dataBenutzer.Present Binding.Converter.toDisplay"></span>
+                         </div>
+                         <select id="InitBenAnw"
+                                 class="input_field win-dropdown"
+                                 data-win-control="WinJS.UI.Repeater"
+                                 data-win-bind="value: dataBenutzer.INITBenAnwID Binding.Mode.twoway style.display: dataBenutzer.Present Binding.Converter.toDisplayNone">
+                             <option data-win-bind="value: INITBenAnwID; textContent: TITLE"></option>
+                         </select>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.message1'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.message1'}"></span>
+                         <textarea class="input_field win-textarea" data-win-bind="value: dataBenutzer.Info1 Binding.Mode.twoway" onblur="AppBar.handleEvent('blur', 'activateEnterKey', event)" onfocus="AppBar.handleEvent('focus', 'deactivateEnterKey', event)" onkeydown="AppBar.handleEvent('keydown', 'pressEnterKey', event)"></textarea>
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.message1time'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.message1time'}"></span>
+                         <span class="input_field" data-win-bind="textContent: dataBenutzer.Info1TS Binding.Converter.toDateString"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd" data-win-bind="style.display: dataBenutzer.Info2 Binding.Converter.toDisplay">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.message2'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.message2'}"></span>
+                         <span class="input_field" data-win-bind="textContent: dataBenutzer.Info2; style.fontWeight: newInfo2Flag Binding.Converter.toBold"></span>
+                     </div>
+                     <div class="field_line field_line_even" data-win-bind="style.display: dataBenutzer.Info2 Binding.Converter.toDisplay">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.message2time'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.message2time'}"></span>
+                         <span class="input_field" data-win-bind="textContent: dataBenutzer.Info2TS Binding.Converter.toDateString"></span>
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd photo-container"
+                          data-win-bind="style.display: photoData Binding.Converter.toDisplay"></div>
+                     <div class="line-separator"
+                          data-win-bind="style.display: photoData Binding.Converter.toDisplay"></div>
+                     <div class="line-separator"></div>-->
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.academicTitle'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.academicTitle'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.Titel Binding.Mode.twoway" />
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.firstName'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.firstName'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.Vorname Binding.Mode.twoway" />
+                     </div>
+                     <div class="field_line field_line_even" style="overflow-y: hidden">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.name'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.name'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.Name Binding.Mode.twoway" />
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.position'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.position'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.Position Binding.Mode.twoway" />
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.email'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.email'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.EMail Binding.Mode.twoway" />
+                     </div>
+                     <div class="line-separator"></div>
+                     <div class="field_line field_line_odd">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.phone'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.phone'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.TelefonFestnetz Binding.Mode.twoway" />
+                     </div>
+                     <div class="field_line field_line_even">
+                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.mobile'}"></span>
+                         <span class="label landscape_only" data-win-res="{textContent: 'userinfo.mobile'}"></span>
+                         <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.TelefonMobil Binding.Mode.twoway" />
+                     </div>
+                 </div>
+                     <div class="error-message"
+                          data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>
+             </section>
+         </div>
+     </div>
+</body>
+</html>
