@@ -1,6 +1,6 @@
-﻿.register-email {
+﻿/*.register-email {
     visibility: visible;
-}
+}*/
 
 .register-complete, .register-address {
     visibility: hidden;

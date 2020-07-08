@@ -17,7 +17,7 @@
         colorSettings: {
             // navigation-color with 100% saturation and brightness
             accentColor: "#ff5014", /*#308fb3*/
-            navigationColor: "#ff5014"
+            /*navigationColor: "#ff5014"*/
         }, 
         showAppBkg: false,
         turnThumbsLeft: false,
@@ -69,7 +69,7 @@
             timeZoneAdjustment: 0,
             timeZoneRemoteAdjustment: null,
             timeZoneRemoteDiffMs: 0,
-            serverFailure: true,
+            serverFailure: true
         }
     };
 

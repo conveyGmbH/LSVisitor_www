@@ -323,6 +323,7 @@
     "register.password"     : "Kennwort",
     "register.confirmation" : "Bestätigung",
     "register.complete"     : "Vielen Dank für Ihre Registrierung! Sie erhalten in Kürze eine Email zur Bestätigung an die oben angegebene Adresse.",
+    "register.mandatory"    : "* Diese Felder müssen ausgefüllt werden.",
      
     "recover.title"         : "Kennwort vergessen",
     "recover.commentEmail"  : "Bitte geben Sie Ihre Email-Adresse an. Sie können damit ihr Kennwort zurücksetzen.",

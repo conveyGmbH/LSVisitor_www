@@ -14,15 +14,13 @@
 
 (function () {
     "use strict";
-
+    var b64 = window.base64js;
     WinJS.Namespace.define("ListLocal", {
         Controller: WinJS.Class.derive(Application.Controller, function Controller(pageElement, commandList) {
             Log.call(Log.l.trace, "ListLocal.Controller.");
             Application.Controller.apply(this, [pageElement, {
-                showNumberContacts: getResourceText("listLocal.contactTotal") + ": " + AppData.generalData.contactCountLocal + ", " + getResourceText("listLocal.online") + ": " + AppData.generalData.contactUploaded + ", " + getResourceText("listLocal.notOnline") + ": " + AppData.generalData.contactNotUploaded,
-                uploaded: AppData.generalData.contactUploaded,
-                notUploaded: AppData.generalData.contactNotUploaded,
                 shareListContacts: null,
+                shareListImages: [],
                 count: 0
             }, commandList]);
             this.nextUrl = null;
@@ -47,6 +45,9 @@
                 if (that.contacts) {
                     that.contacts = null;
                 }*/
+                if (that.pdfzip) {
+                    that.pdfzip = null;
+                }
             }
 
             var progress = null;
@@ -66,6 +67,54 @@
                 }
             }
             this.background = background;
+
+            var saveZip = function (zip) {
+                if (zip) {
+                    var i, len;
+                    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                        var bUseRootDir = false;
+                        var rootDirectory = cordova.file.externalRootDirectory;;
+                        var dataDirectory = "";
+                        var fullPath = mediaFiles[i].fullPath;
+                        var pos = fullPath.lastIndexOf("/");
+                        if (pos < 0) {
+                            pos = fullPath.lastIndexOf("\\");
+                        }
+                        var fileName;
+                        if (pos >= 0) {
+                            fileName = fullPath.substr(pos + 1);
+                        } else {
+                            fileName = fullPath;
+                        }
+                        if (typeof device === "object") {
+                            Log.print(Log.l.trace, "platform=" + device.platform);
+                            switch (device.platform) {
+                                case "Android":
+                                    if (pos >= 0) {
+                                        dataDirectory = fullPath.substr(0, pos);
+                                        if (dataDirectory.indexOf(rootDirectory) >= 0) {
+                                            dataDirectory = dataDirectory.replace(rootDirectory, "");
+                                            bUseRootDir = true;
+                                        }
+                                    }
+                                    break;
+                                case "iOS":
+                                    dataDirectory = cordova.file.tempDirectory;
+                                    break;
+                                default:
+                                    dataDirectory = cordova.file.dataDirectory;
+                            }
+                        } else {
+                            dataDirectory = cordova.file.dataDirectory;
+                        }
+                        // do something interesting with the file
+                        that.loadDataFile(dataDirectory, fileName, bUseRootDir);
+                    }
+                } else {
+                    AppBar.busy = false;
+                }
+            }
+            this.saveZip = saveZip;
 
             var resultConverter = function (item, index) {
                 /*var map = AppData.initLandView.getMap();
@@ -154,6 +203,10 @@
                         }
                     }
                 }
+                if (item.OvwContentDOCCNT3) {
+                    that.binding.shareListImages.push(item.OvwContentDOCCNT3);
+                }
+
                 item.showDoc = true;
                 if (item.SHOW_Barcode || item.IMPORT_CARDSCANID && !item.SHOW_Visitenkarte) {
                     item.svgSource = item.IMPORT_CARDSCANID ? "barcode-qr" : "barcode";
@@ -280,11 +333,28 @@
                 clickShare: function (event) {
                     Log.call(Log.l.trace, "ListLocal.Controller.");
                     var data = JSON.stringify(that.binding.shareListContacts);
+                    //that.xlsxblob muss noch initalisiert werden
+                    var zip = new JSZip();
                     var formattedName = "List of Contacts";
                     var subject = formattedName;
                     var message = formattedName + data;
-                    window.plugins.socialsharing.share(message, subject, null, null);
+                    /*zip.file("Anhänge", message);
 
+                    zip.generateAsync({
+                        blob: true,
+                        base64: false,
+                        compression: "STORE",
+                        type: "blob"
+                    }).then(function (zipBlob) {
+
+                        window.plugins.socialsharing.share(null, subject, zipBlob, null);
+                    });*/
+                    if (that.pdfzip && that.pdfzip !== null) {
+                        var promise = null;
+                        window.plugins.socialsharing.share("TESTwithObject", subject, that.pdfzip, null);
+                    } else {
+                        window.plugins.socialsharing.share("test", subject, null, null);
+                    }
                     Log.ret(Log.l.trace);
                 },
                 clickListStartPage: function (event) {
@@ -570,6 +640,27 @@
                 this.addRemovableEventListener(listView, "headervisibilitychanged", this.eventHandlers.onHeaderVisibilityChanged.bind(this));
                 this.addRemovableEventListener(listView, "footervisibilitychanged", this.eventHandlers.onFooterVisibilityChanged.bind(this));
             }
+            var addPdfToZip = function (filename, docContent) {
+                //data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7
+                if (!that.pdfzip) {
+                    that.pdfzip = [];
+                }
+
+                if (filename && docContent) {
+                    //var sub = docContent.search("\r\n\r\n");
+                    var sub = docContent.search("\r\n\r\n");
+                    var jpegData = "data:image/jpg;base64," + docContent.substr(sub + 4);
+                    if (sub > 0) {
+                        //var data = b64.toByteArray(jpegData.substr(sub + 4));
+                        that.pdfzip.push(jpegData);
+                    } else {
+                        that.pdfzip.push(docContent);
+                    }
+
+                }
+            }
+            this.addPdfToZip = addPdfToZip;
+
             var loadData = function () {
                 Log.call(Log.l.trace, "ListLocal.Controller.");
                 that.loading = true;
@@ -720,6 +811,7 @@
                                 var results = json.d.results;
                                 results.forEach(function (item, index) {
                                     that.resultDocConverter(item, index);
+                                    that.addPdfToZip(item.Firmenname, item.OvwContentDOCCNT3);
                                 });
                                 that.docs = results;
                             } else {

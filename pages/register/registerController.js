@@ -61,20 +61,8 @@
                 }
                 that.binding.emailOkFlag = that.getEmailOkFlag();
                 that.binding.registerOkFlag = that.getRegisterOkFlag();
-                if (that.binding.dataRegister.ErfassungsStatus === 1 &&
+                if (that.binding.dataRegister.ErfassungsStatus === 0 &&
                     that.binding.dataRegister.Freischaltung === 0) {
-                    that.binding.dataRegister.Freischaltung = 2;
-                    registerEmail = pageElement.querySelectorAll(".register-email");
-                    if (registerEmail && registerEmail.length > 0) {
-                        WinJS.UI.Animation.exitContent(registerEmail, null).then(function() {
-                            for (i = 0; i < registerEmail.length; i++) {
-                                if (registerEmail[i].style) {
-                                    registerEmail[i].style.visibility = "hidden";
-                                    registerEmail[i].style.display = "none";
-                                }
-                            }
-                        });
-                    }
                     registerAddress = pageElement.querySelectorAll(".register-address");
                     if (registerAddress && registerAddress.length > 0) {
                         for (i = 0; i < registerAddress.length; i++) {
@@ -86,6 +74,34 @@
                         //WinJS.UI.Animation.enterContent(registerAddress, null, { mechanism: "transition" });
                         WinJS.UI.Animation.slideUp(registerAddress);
                     }
+                }
+                if (that.binding.dataRegister.ErfassungsStatus === 1 &&
+                    that.binding.dataRegister.Freischaltung === 0) {
+                    that.binding.dataRegister.Freischaltung = 2;
+                    /*registerEmail = pageElement.querySelectorAll(".register-email");
+                    if (registerEmail && registerEmail.length > 0) {
+                        WinJS.UI.Animation.exitContent(registerEmail, null).then(function() {
+                            for (i = 0; i < registerEmail.length; i++) {
+                                if (registerEmail[i].style) {
+                                    registerEmail[i].style.visibility = "hidden";
+                                    registerEmail[i].style.display = "none";
+                                }
+                            }
+                        });
+                    }
+                    if (that.binding.dataRegister.Freischaltung === 2) {
+                    registerAddress = pageElement.querySelectorAll(".register-address");
+                    if (registerAddress && registerAddress.length > 0) {
+                        for (i = 0; i < registerAddress.length; i++) {
+                            if (registerAddress[i].style) {
+                                registerAddress[i].style.display = "inline";
+                                registerAddress[i].style.visibility = "visible";
+                            }
+                        }
+                        //WinJS.UI.Animation.enterContent(registerAddress, null, { mechanism: "transition" });
+                        WinJS.UI.Animation.slideUp(registerAddress);
+                    }
+                    }*/
                 }
                 if (that.binding.dataRegister.Freischaltung === 3) {
                     registerAddress = pageElement.querySelectorAll(".register-address");
@@ -107,7 +123,7 @@
                                 registerComplete[i].style.visibility = "visible";
                             }
                         }
-                        //WinJS.UI.Animation.enterContent(registerComplete, null, { mechanism: "transition" });
+                        WinJS.UI.Animation.enterContent(registerComplete, null, { mechanism: "transition" });
                         WinJS.UI.Animation.slideUp(registerComplete);
                     }
                 }
@@ -134,26 +150,46 @@
                     Log.call(Log.l.trace, "Register.Controller.");
                     that.saveData(function (response) {
                         // called asynchronously if ok
-                    }, function (errorResponse) {
+                    },
+                        function (errorResponse) {
                         // called asynchronously on error
                     });
                     Log.ret(Log.l.trace);
                 },
                 clickListStartPage: function (event) {
-                    Log.call(Log.l.trace, "ListLocal.Controller.");
+                    Log.call(Log.l.trace, "Register.Controller.");
                     Application.navigateById("listLocal", event);
+                    Log.ret(Log.l.trace);
+                },
+                clickRegisterPrivacyPolicy: function (event) {
+                    Log.call(Log.l.trace, "Register.Controller.");
+                    /**
+                     * dataRegister.Email
+                     */
+                    if (event && (event.target)) {
+                        that.binding.dataRegister.registerprivacyPolicyFlag = event.target.checked;
+                        AppBar.triggerDisableHandlers();
+                    }
                     Log.ret(Log.l.trace);
                 }
             };
 
             this.disableHandlers = {
                 clickOk: function () {
-                    if (!that.binding.dataRegister.Freischaltung ||
-                        that.binding.dataRegister.Freischaltung < 3) {
+                    if ((!that.binding.dataRegister.Freischaltung ||
+                        that.binding.dataRegister.Freischaltung < 3) && that.binding.dataRegister.registerprivacyPolicyFlag) {
                         return AppBar.busy;
                     } else {
                         return true;
                     }
+                },
+                clickRegisterPrivacyPolicy: function (event) {
+                    that.binding.registerDisabled = AppBar.busy ||
+                        (that.binding.dataRegister.Email.length === 0 || !that.binding.dataRegister.registerprivacyPolicyFlag);
+                    if (!that.binding.dataRegister.Email) {
+                        that.binding.dataRegister.registerprivacyPolicyFlag = false;
+                    }
+                    return that.binding.registerDisabled;
                 }
             }
 
@@ -233,6 +269,7 @@
             
             that.setDataRegister(getEmptyDefaultValue(Register.registerView.defaultValue));
             that.binding.dataRegister.LanguageID = AppData.getLanguageId();
+            that.binding.dataRegister.AccountType = "VISITOR";
             Log.print(Log.l.trace, "LanguageID=" + that.binding.dataRegister.LanguageID);
 
             that.processAll().then(function () {

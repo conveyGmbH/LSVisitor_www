@@ -182,7 +182,6 @@
                             LanguageID: AppData.getLanguageId(),
                             Aktion: deviceID
                         };
-                        console.log(dataLogin.LanguageID);
                         return DBInit.loginView.insert(function (json) {
                             // this callback will be called asynchronously
                             // when the response is available
