@@ -53,7 +53,7 @@
                         }
                     }
                 }
-                if (UserVcard.veranstaltungView && that.binding.dataVeranstaltung && that.binding.dataVeranstaltung.VeranstaltungVIEWID) {
+                /*if (UserVcard.veranstaltungView && that.binding.dataVeranstaltung && that.binding.dataVeranstaltung.VeranstaltungVIEWID) {
                     for (prop in UserVcard.veranstaltungView.defaultValue) {
                         if (UserVcard.veranstaltungView.defaultValue.hasOwnProperty(prop)) {
                             if (!dataContact) {
@@ -66,7 +66,7 @@
                             }
                         }
                     }
-                }
+                }*/
                 Log.ret(Log.l.trace);
                 return dataContact;
             };
@@ -99,20 +99,20 @@
 
             var loadInitSelection = function () {
                 Log.call(Log.l.trace, "UserVcard.Controller.");
-                if (typeof that.binding.dataVeranstaltung.VeranstaltungVIEWID !== "undefined") {
+                //if (typeof that.binding.dataBenutzer.VeranstaltungVIEWID !== "undefined") {
                     var map, results, curIndex;
-                    if (typeof that.binding.dataVeranstaltung.INITLandID !== "undefined") {
+                    if (typeof that.binding.dataBenutzer.INITLandID !== "undefined") {
                         Log.print(Log.l.trace, "calling select initLandData: Id=" + that.binding.dataVeranstaltung.INITLandID + "...");
                         map = AppData.initLandView.getMap();
                         results = AppData.initLandView.getResults();
                         if (map && results) {
-                            curIndex = map[that.binding.dataVeranstaltung.INITLandID];
+                            curIndex = map[that.binding.dataBenutzer.INITLandID];
                             if (typeof curIndex !== "undefined") {
                                 setInitLandItem(results[curIndex]);
                             }
                         }
                     }
-                }
+                //}
                 Log.ret(Log.l.trace);
                 return WinJS.Promise.as();
             }
@@ -245,6 +245,11 @@
                 clickListStartPage: function (event) {
                     Log.call(Log.l.trace, "ListLocal.Controller.");
                     Application.navigateById("listLocal", event);
+                    Log.ret(Log.l.trace);
+                },
+                clickChangeUserState: function (event) {
+                    Log.call(Log.l.trace, "Settings.Controller.");
+                    Application.navigateById("userinfo", event);
                     Log.ret(Log.l.trace);
                 }
             };

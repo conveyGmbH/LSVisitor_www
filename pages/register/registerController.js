@@ -27,6 +27,30 @@
             // select combo
             var initLand = pageElement.querySelector("#InitLand");
 
+            var checkIPhoneBug = function () {
+                if (navigator.appVersion) {
+                    var testDevice = ["iPhone OS", "iPod OS"];
+                    for (var i = 0; i < testDevice.length; i++) {
+                        var iPhonePod = navigator.appVersion.indexOf(testDevice[i]);
+                        if (iPhonePod >= 0) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            };
+            var isAppleDevice = checkIPhoneBug();
+
+            var privacyPolicyLink = pageElement.querySelector("#privacyPolicyLink");
+            //window.open funktioniert auf windows nicht, da wird daraus ein x-onlick generiert im html
+            if (privacyPolicyLink) {
+                if (isAppleDevice) {
+                    privacyPolicyLink.innerHTML = "<a onclick=\"window.open(\'" + getResourceText("login.privacyPolicyLink") + "\', \'_system\'); return false;\"href=\"#\">" + getResourceText("register.privacyPolicy") + "</a>";
+                } else {
+                    privacyPolicyLink.innerHTML = "<a class=\"checkbox\" href=\"" + getResourceText("login.privacyPolicyLink") + "\" target=\"_blank\">" + getResourceText("register.privacyPolicy") + "</a>";
+                }
+            }
+
             var getEmailOkFlag = function () {
                 if (that.binding.dataRegister &&
                     (that.binding.dataRegister.ErfassungsStatus === 1 ||
@@ -127,6 +151,9 @@
                         WinJS.UI.Animation.slideUp(registerComplete);
                     }
                 }
+                if (typeof that.binding.dataRegister.Email === "undefined" || that.binding.dataRegister.Email === null) {
+                    that.binding.dataRegister.Email = "";
+                }
                 if (that.binding.dataRegister.MessageText) {
                     AppData.setErrorMsg(that.binding, that.binding.dataRegister.MessageText);
                 }
@@ -183,7 +210,7 @@
                         return true;
                     }
                 },
-                clickRegisterPrivacyPolicy: function (event) {
+                clickRegisterPrivacyPolicy: function () {
                     that.binding.registerDisabled = AppBar.busy ||
                         (that.binding.dataRegister.Email.length === 0 || !that.binding.dataRegister.registerprivacyPolicyFlag);
                     if (!that.binding.dataRegister.Email) {
@@ -244,7 +271,6 @@
                     AppBar.busy = false;
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log("registerData: success!");
                     // loginData returns object already parsed from json file in response
                     if (json && json.d) {
                         that.setDataRegister(json.d);

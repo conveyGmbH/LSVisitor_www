@@ -37,14 +37,13 @@
             var hasBarcodeScanner = (isAndroid || isWindows10) ? true : false;
             var hasSerialDevice = (isWindows10 && AppData.generalData.useBarcodeActivity) ? true : false;
             var hasScannerOption = (hasPicturesDirectory || hasBarcodeScanner || hasSerialDevice) ? true : false;
+            var lastError = AppBar.scope.binding.error.errorMsg ? AppBar.scope.binding.error.errorMsg : "";
 
             Application.Controller.apply(this, [pageElement, {
-                uploadTS: (AppData.appSettings.odata.replPrevPostMs
-                    ? "\/Date(" + AppData.appSettings.odata.replPrevPostMs + ")\/"
-                    : null),
-                downloadTS: (AppData.appSettings.odata.replPrevSelectMs
-                    ? "\/Date(" + AppData.appSettings.odata.replPrevSelectMs + ")\/"
-                    : null),
+                uploadTS: (AppData.appSettings.odata.replPrevPostMs ? 
+                "\/Date(" + AppData.appSettings.odata.replPrevPostMs + ")\/" : null),
+                downloadTS: (AppData.appSettings.odata.replPrevSelectMs ? 
+                "\/Date(" + AppData.appSettings.odata.replPrevSelectMs + ")\/" : null),
                 version: Application.version,
                 environment: "Platform: " + navigator.appVersion,
                 showClipping: false,
@@ -55,7 +54,8 @@
                 hasSerialDevice: hasSerialDevice,
                 barcodeDeviceStatus: Barcode.deviceStatus,
                 hasScannerOption: hasScannerOption,
-                lastError: AppBar.scope.binding.error.errorMsg ? AppBar.scope.binding.error.errorMsg : ""
+                lastError: lastError,
+                logToFile: AppData.generalData.logTarget === 2 ? true : false
             }, commandList]);
 
             this.picturesDirectorySubFolder = AppData.generalData.picturesDirectorySubFolder;
@@ -135,6 +135,16 @@
             this.setupLog = setupLog;
 
             this.eventHandlers = {
+                clickHomepageLink: function(event) {
+                    Log.call(Log.l.trace, "Info.Controller.");
+                    var url = "https://" + getResourceText("info.homepage");
+                    if (isAppleDevice && cordova.InAppBrowser) {
+                        cordova.InAppBrowser.open(url, '_system');
+                    } else {
+                        window.open(url, '_system');
+                    }
+                    Log.ret(Log.l.trace);
+                },
                 clickOk: function (event) {
                     Log.call(Log.l.trace, "Info.Controller.");
                     Application.navigateById("listLocal", event); /*listRemote*/
@@ -182,6 +192,7 @@
                         var toggle = event.currentTarget.winControl;
                         if (toggle) {
                             that.binding.generalData.logOffOptionActive = toggle.checked;
+                            AppData.generalData.logOffOptionActive = toggle.checked;
                         }
                     }
                     Log.ret(Log.l.trace);
@@ -278,9 +289,6 @@
                         if (range) {
                             that.binding.generalData.cameraQuality = range.value;
                         }
-                       /* if (that.binding.generalData.cameraQuality === "50") {
-                            that.binding.generalData.cameraQuality = that.binding.generalData.cameraQuality + " " + getResourceText('info.recommended');
-                        } */
                     }
                     Log.ret(Log.l.trace);
                 },
@@ -320,6 +328,16 @@
                         var toggle = event.currentTarget.winControl;
                         if (toggle) {
                             that.binding.generalData.logNoStack = toggle.checked;
+                        }
+                    }
+                    Log.ret(Log.l.trace);
+                },
+                clickLogTarget: function (event) {
+                    Log.call(Log.l.trace, "info.Controller.");
+                    if (event.currentTarget && AppBar.notifyModified) {
+                        var toggle = event.currentTarget.winControl;
+                        if (toggle) {
+                            that.binding.generalData.logTarget = toggle.checked ? 2 : 1;
                         }
                     }
                     Log.ret(Log.l.trace);
@@ -408,6 +426,7 @@
                         picturesFolderSelect.winControl &&
                         hasPicturesDirectory &&
                         typeof window.resolveLocalFileSystemURL === "function") {
+                        try {
                         window.resolveLocalFileSystemURL(cordova.file.picturesDirectory,
                             function(dirEntry) {
                                 Log.print(Log.l.info,
@@ -442,6 +461,9 @@
                             function(errorResponse) {
                                 Log.print(Log.l.error, "resolveLocalFileSystemURL error " + errorResponse.toString());
                             });
+                        } catch (e) {
+                            AppData.setErrorMsg(this.binding, e);
+                        }
                     };
                 }).then(function() {
                     if (that.binding.hasSerialDevice &&

@@ -351,6 +351,7 @@
     "login.inactive"        : "Nome utente specificato è attualmente inattivo!",
     "login.modified"        : "Nome utente specificato è modificato!",
      
+    "register.privacyPolicy"   : "Convey Terms of Service",
     "register.title"        : "Registrazione",
     "register.welcome"      : "Benvenuto in LeadSuccess!",
     "register.commentEmail" : "Per favore inserisci la tua E-Mail. Questa potrà in seguito essere usata come nome utente",
@@ -496,6 +497,7 @@
     "userinfo.fax"          : "Fax",
     "userinfo.phone"        : "Tel",
     "userinfo.mobile"       : "Cell",
+    "userinfo.country"       : "Nazione",
 
     "uservcard.title"       : "Le mie informazioni di contatto come QR-Code",
 	"uservcard.firstName"    : "Primo nome",

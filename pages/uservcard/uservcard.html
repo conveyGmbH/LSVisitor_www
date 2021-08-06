@@ -49,20 +49,9 @@
                          <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Position"></span>
                      </div>
                      <div class="field_line field_line_even">
-                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.url'}"></span>
-                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.url'}"></span>
-                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.WebAdresse"></span>
-                     </div>
-                     <div class="line-separator"></div>
-                     <div class="field_line field_line_odd">
-                         <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.company'}"></span>
-                         <span class="label landscape_only" data-win-res="{textContent: 'uservcard.company'}"></span>
-                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Firmenname"></span>
-                     </div>
-                     <div class="field_line field_line_even">
                          <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.address'}"></span>
                          <span class="label landscape_only" data-win-res="{textContent: 'uservcard.address'}"></span>
-                         <span class="input_field win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Strasse"></span>
+                        <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Strasse"></span>
                      </div>
                      <div class="line-separator"></div>
                      <div class="field_line field_line_odd">
@@ -72,8 +61,8 @@
                              <span data-win-res="{textContent: 'uservcard.zip'}"></span> / <span data-win-res="{textContent: 'uservcard.city'}"></span>
                          </div>
                          <div class="input_group">
-                             <span class="input_small_left win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.PLZ"></span>
-                             <span class="input_small_right win-type-subtitle" data-win-bind="textContent: dataVeranstaltung.Stadt"></span>
+                            <span class="input_small_left win-type-subtitle" data-win-bind="textContent: dataBenutzer.PLZ"></span>
+                            <span class="input_small_right win-type-subtitle" data-win-bind="textContent: dataBenutzer.Stadt"></span>
                          </div>
                      </div>
                      <div class="field_line field_line_even">
@@ -98,6 +87,35 @@
                          <span class="label landscape_only" data-win-res="{textContent: 'uservcard.mobile'}"></span>
                          <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.TelefonMobil"></span>
                      </div>
+                    <div class="line-separator"></div>
+                    <!--<div class="field_line field_line_odd">
+                        <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.address'}"></span>
+                        <span class="label landscape_only" data-win-res="{textContent: 'uservcard.address'}"></span>
+                        <span class="input_field win-type-subtitle" data-win-bind="textContent: dataBenutzer.Strasse"></span>
+                    </div>
+                    <div class="field_line field_line_even">
+                        <span class="label win-type-caption portrait_only_left" data-win-res="{textContent: 'uservcard.zip'}"></span>
+                        <span class="label win-type-caption portrait_only_right" data-win-res="{textContent: 'uservcard.city'}"></span>
+                        <div class="label landscape_only">
+                            <span data-win-res="{textContent: 'uservcard.zip'}"></span> / <span data-win-res="{textContent: 'uservcard.city'}"></span>
+                        </div>
+                        <div class="input_group">
+                            <span name="PLZ" class="input_small_left win-type-subtitle" data-win-bind="textContent: dataBenutzer.PLZ"></span>
+                            <span name="Stadt" class="input_small_right win-type-subtitle" data-win-bind="textContent: dataBenutzer.Stadt"></span>
+                        </div>
+                    </div>
+                    <div class="line-separator"></div>
+                    <div class="field_line field_line_odd">
+                        <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'uservcard.country'}"></span>
+                        <span class="label landscape_only" data-win-res="{textContent: 'uservcard.country'}"></span>
+                        <select id="InitLand"
+                                class="input_field win-dropdown"
+                                data-win-control="WinJS.UI.Repeater"
+                                data-win-bind="value: dataBenutzer.INITLandID Binding.Mode.twoway; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplayNone">
+                            <option data-win-bind="value: INITLandID; textContent: TITLE"></option>
+                        </select>
+                        <span class="input_field" data-win-bind="textContent: InitLandItem.TITLE; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplay"></span>
+                    </div>-->
                  </div>
                      <div class="error-message"
                           data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>

@@ -434,6 +434,7 @@
     "userinfo.presence"     : "Anwesenheit",
     "userinfo.message1time" : "Sent",
     "userinfo.message2time" : "Received",
+    "userinfo.country"       : "Land",
 
     "uservcard.title"       : "My contact info as QR-Code",
 	"uservcard.firstName"    : "Primo nome",

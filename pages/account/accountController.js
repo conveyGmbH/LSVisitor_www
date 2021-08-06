@@ -142,7 +142,7 @@
                 clickChangeUserState: function (event) {
                     Log.call(Log.l.trace, "Account.Controller.");
                     //ignore that here!
-                    //Application.navigateById("userinfo", event);
+                    Application.navigateById("userinfo", event);
                     Log.ret(Log.l.trace);
                 },
                 clickDoEdit: function (event) {
@@ -230,7 +230,7 @@
                     return AppBar.busy || (!that.binding.dataLogin.Login || !that.binding.dataLogin.Password || !that.binding.dataLogin.PrivacyPolicyFlag);
                 },
                 clickLogoff: function () {
-                    return false;
+                    return !that.binding.generalData.logOffOptionActive;
                 }
             };
 

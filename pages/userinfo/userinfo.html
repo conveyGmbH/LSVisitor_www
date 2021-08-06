@@ -113,6 +113,37 @@
                          <span class="label landscape_only" data-win-res="{textContent: 'userinfo.mobile'}"></span>
                          <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.TelefonMobil Binding.Mode.twoway" />
                      </div>
+                    <div class="line-separator"></div>
+                    <div class="field_line field_line_odd">
+                        <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.address'}"></span>
+                        <span class="label landscape_only" data-win-res="{textContent: 'userinfo.address'}"></span>
+                        <input class="input_field win-textbox" type="text" data-win-bind="value: dataBenutzer.Strasse Binding.Mode.twoway" />
+                    </div>
+                    <div class="field_line field_line_even">
+                        <span class="label win-type-caption portrait_only_left" data-win-res="{textContent: 'userinfo.zip'}"></span>
+                        <span class="label win-type-caption portrait_only_right" data-win-res="{textContent: 'userinfo.city'}"></span>
+                        <div class="label landscape_only">
+                            <span data-win-res="{textContent: 'userinfo.zip'}"></span> / <span data-win-res="{textContent: 'userinfo.city'}"></span>
+                        </div>
+                        <div class="input_group">
+                            <input name="PLZ" class="input_small_left win-textbox" type="text" data-win-bind="value: dataBenutzer.PLZ Binding.Mode.twoway; style.display: dataContact.Flag_NoEdit Binding.Converter.toDisplayNone" />
+                            <input name="Stadt" class="input_small_right win-textbox" type="text" data-win-bind="value: dataBenutzer.Stadt Binding.Mode.twoway; style.display: dataContact.Flag_NoEdit Binding.Converter.toDisplayNone" />
+                            <span class="input_small_left" data-win-bind="textContent: dataBenutzer.PLZ; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplay"></span>
+                            <span class="input_small_right" data-win-bind="textContent: dataBenutzer.Stadt; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplay"></span>
+                        </div>
+                    </div>
+                    <div class="line-separator"></div>
+                    <div class="field_line field_line_odd">
+                        <span class="label win-type-caption portrait_only" data-win-res="{textContent: 'userinfo.country'}"></span>
+                        <span class="label landscape_only" data-win-res="{textContent: 'userinfo.country'}"></span>
+                        <select id="InitLand"
+                                class="input_field win-dropdown"
+                                data-win-control="WinJS.UI.Repeater"
+                                data-win-bind="value: dataBenutzer.INITLandID Binding.Mode.twoway; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplayNone">
+                            <option data-win-bind="value: INITLandID; textContent: TITLE"></option>
+                        </select>
+                        <span class="input_field" data-win-bind="textContent: InitLandItem.TITLE; style.display: dataBenutzer.Flag_NoEdit Binding.Converter.toDisplay"></span>
+                    </div>
                  </div>
                      <div class="error-message"
                           data-win-bind="style.display: error.displayErrorMsg; textContent: error.errorMsg"></div>

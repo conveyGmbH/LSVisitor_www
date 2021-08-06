@@ -16,7 +16,7 @@
     AppData.persistentStatesDefaults = {
         colorSettings: {
             // navigation-color with 100% saturation and brightness
-            accentColor: "#ff5014", /*#308fb3*/
+            accentColor: "#308fb3", /*#ff5014*/
             /*navigationColor: "#ff5014"*/
         }, 
         showAppBkg: false,
@@ -33,7 +33,7 @@
         picturesDirectorySubFolder: "",
         cameraFeatureSupported: true,
         useBinaryQrCode: false,
-        logEnabled: true,
+        logEnabled: false,
         fullScreen: false,
         logLevel: 3,
         logGroup: false,
@@ -45,9 +45,9 @@
         iconStrokeWidth: 150,
         prevNavigateNewId: "newContact",
         odata: {
-            https: false,
-            hostName: "deimos.convey.de",
-            onlinePort: 8090,
+            https: true,
+            hostName: "leadsuccess.convey.de", //lstest.convey.de
+            onlinePort: 443,
             urlSuffix: null,
             onlinePath: "odata_online", // serviceRoot online requests
             login: "",
@@ -91,6 +91,7 @@
         { id: "listLocal", group: 2, disabled: false },
         //{ id: "listRemote", group: 2, disabled: false },
         //{ id: "search", group: 2, disabled: false },
+		{ id: "about", group: 3, disabled: false },
         { id: "info", group: 3, disabled: false },
         //{ id: "settings", group: 3, disabled: false },
         { id: "account", group: 3, disabled: false },

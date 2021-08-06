@@ -21,10 +21,22 @@
                             <span class="date-field"></span>
                         </div>
                     </div>
-                    <div class="line-separator register-email"></div>
-                    <div class="field_line field_line_full register-email">
-                        <span class="large_field"
-                              data-win-res="{textContent: 'register.commentEmail'}"></span>
+                    <div class="line-separator register-address"></div>
+                    <div class="field_line field_line_odd register-address">
+                        <span class="label win-type-caption portrait_only"
+                              data-win-res="{textContent: 'register.firstName'}"></span>
+                        <span class="label landscape_only"
+                              data-win-res="{textContent: 'register.firstName'}"></span>
+                        <input class="input_field win-textbox" type="text"
+                               data-win-bind="value: dataRegister.Vorname Binding.Mode.twoway" />
+                    </div>
+                    <div class="field_line field_line_even register-address">
+                        <span class="label win-type-caption portrait_only"
+                              data-win-res="{textContent: 'register.name'}"></span>
+                        <span class="label landscape_only"
+                              data-win-res="{textContent: 'register.name'}"></span>
+                        <input class="input_field win-textbox" type="text"
+                               data-win-bind="value: dataRegister.Nachname Binding.Mode.twoway" />
                     </div>
                     <div class="line-separator"></div>
                     <div class="field_line field_line_odd">
@@ -43,23 +55,11 @@
                         <span class="large_field"
                               data-win-res="{textContent: 'register.comment'}"></span>
                     </div>
-                    <div class="line-separator register-address"></div>
-                    <div class="field_line field_line_odd register-address">
-                        <span class="label win-type-caption portrait_only"
-                              data-win-res="{textContent: 'register.firstName'}"></span>
-                        <span class="label landscape_only"
-                              data-win-res="{textContent: 'register.firstName'}"></span>
-                        <input class="input_field win-textbox" type="text"
-                               data-win-bind="value: dataRegister.Vorname Binding.Mode.twoway" />
-                    </div>
-                    <div class="field_line field_line_even register-address">
-                        <span class="label win-type-caption portrait_only"
-                              data-win-res="{textContent: 'register.name'}"></span>
-                        <span class="label landscape_only"
-                              data-win-res="{textContent: 'register.name'}"></span>
-                        <input class="input_field win-textbox" type="text"
-                               data-win-bind="value: dataRegister.Nachname Binding.Mode.twoway" />
-                    </div>
+                    <!--<div class="line-separator register-email"></div>
+                    <div class="field_line field_line_full register-email">
+                        <span class="large_field"
+                              data-win-res="{textContent: 'register.commentEmail'}"></span>
+                    </div>-->
                     <!--<div class="line-separator register-address"></div>
                     <div class="field_line field_line_odd register-address">
                         <span class="label win-type-caption portrait_only"
@@ -127,21 +127,23 @@
                         <input class="input_field win-textbox" type="password"
                                data-win-bind="value: dataRegister.Password2 Binding.Mode.twoway" />
                     </div>-->
-                    <div class="line-separator"></div>
+                    <!--<div class="line-separator"></div>
                     <div class="field_line field_line_full">
                         <span class="large_field"
                               data-win-res="{textContent: 'register.mandatory'}"></span>
-                    </div>
+                    </div>-->
                     <div class="line-separator register-address"></div>
                     <div class="register-address">
                         <div class="field_line">
                             <label class="checkbox large_field" >
                                 <input type="checkbox" class="win-checkbox checkbox" 
-                                       data-win-bind="checked: dataLogin.registerprivacyPolicyFlag"
+                                       data-win-bind="checked: dataRegister.registerprivacyPolicyFlag"
                                        onclick="AppBar.handleEvent('click', 'clickRegisterPrivacyPolicy', event)" />
                                 <span class="checkbox"
                                       data-win-res="{textContent: 'register.agreementText'}"></span>
                             </label>
+                            <span class="large_field"
+                                  id="privacyPolicyLink"></span>
                             <!--<span class="large_field"
                                       id="privacyPolicyLink"></span>
                             <a href="#" onclick="window.open('https://www.convey.de/datenschutzerklaerung/', '_system'); return false;">www.convey.de/datenschutzerklaerung/</a>-->

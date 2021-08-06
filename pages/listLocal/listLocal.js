@@ -48,7 +48,7 @@
             this.prevHeight = 0;
 
             if (AppBar && AppBar._appBar) {
-                AppBar._appBar._hideOverflowButton = true;
+                AppBar._appBar._hideOverflowButton = false;
             }
 
             // add page specific commands to AppBar

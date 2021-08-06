@@ -28,7 +28,11 @@
                  TelefonFestnetz: "",
                  TelefonMobil: "",
                  EMail: "",
-                 Bemerkungen: ""
+                 Bemerkungen: "",
+                 Strasse: "",
+                 PLZ: "",
+                 Stadt: "",
+                 INITLandID: 0
              }
         },
         _veranstaltungView: {

@@ -21,7 +21,9 @@
                 dataBenutzer: UserInfo.benutzerView && getEmptyDefaultValue(UserInfo.benutzerView.defaultValue),
                 dataPhoto: {},
                 photoData: null,
-                newInfo2Flag: 0
+                newInfo2Flag: 0,
+                InitAnredeItem: { InitAnredeID: 0, TITLE: "" },
+                InitLandItem: { InitLandID: 0, TITLE: "" }
             }, commandList]);
             this.img = null;
 
@@ -29,6 +31,10 @@
 
             // show business card photo
             var photoContainer = pageElement.querySelector(".photo-container");
+
+
+            var initAnrede = pageElement.querySelector("#InitAnrede");
+            var initLand = pageElement.querySelector("#InitLand");
 
             var removePhoto = function () {
                 if (photoContainer) {
@@ -45,6 +51,12 @@
                     removePhoto();
                     that.img.src = "";
                     that.img = null;
+                }
+                if (initAnrede && initAnrede.winControl) {
+                    initAnrede.winControl.data = null;
+                }
+                if (initLand && initLand.winControl) {
+                    initLand.winControl.data = null;
                 }
             }
 
@@ -93,6 +105,43 @@
             };
             this.setDataBenutzer = setDataBenutzer;
 
+            var setInitLandItem = function (newInitLandItem) {
+                var prevNotifyModified = AppBar.notifyModified;
+                AppBar.notifyModified = false;
+                that.binding.InitLandItem = newInitLandItem;
+                AppBar.modified = false;
+                AppBar.notifyModified = prevNotifyModified;
+            }
+
+            var loadInitSelection = function () {
+                Log.call(Log.l.trace, "UserVcard.Controller.");
+                //if (typeof that.binding.dataBenutzer.VeranstaltungVIEWID !== "undefined") {
+                var map, results, curIndex;
+                //if (typeof that.binding.dataBenutzer.INITLandID !== "undefined") {
+                Log.print(Log.l.trace, "calling select initLandData: Id=" + that.binding.dataBenutzer.INITLandID + "...");
+                    map = AppData.initLandView.getMap();
+                    results = AppData.initLandView.getResults();
+                    if (map && results) {
+                        curIndex = map[that.binding.dataBenutzer.INITLandID];
+                        if (typeof curIndex !== "undefined") {
+                            setInitLandItem(results[curIndex]);
+                        }
+                    }
+                //}
+                //}
+                Log.ret(Log.l.trace);
+                return WinJS.Promise.as();
+            }
+
+            var setInitAnredeItem = function (newInitAnredeItem) {
+                var prevNotifyModified = AppBar.notifyModified;
+                AppBar.notifyModified = false;
+                that.binding.InitAnredeItem = newInitAnredeItem;
+                AppBar.modified = false;
+                AppBar.notifyModified = prevNotifyModified;
+            }
+            this.setInitAnredeItem = setInitAnredeItem;
+
             var getRecordId = function() {
                 Log.call(Log.l.trace, "UserInfo.Controller.");
                 var recordId = AppData.getRecordId("Benutzer");
@@ -113,6 +162,60 @@
                 Log.call(Log.l.trace, "UserInfo.Controller.", "recordId=" + recordId);
                 AppData.setErrorMsg(that.binding);
                 var ret = new WinJS.Promise.as().then(function () {
+                    if (!AppData.initAnredeView.getResults().length) {
+                        Log.print(Log.l.trace, "calling select initAnredeData...");
+                        //@nedra:25.09.2015: load the list of INITAnrede for Combobox
+                        var initAnredeSelectPromise = AppData.initAnredeView.select(function (json) {
+                            that.removeDisposablePromise(initAnredeSelectPromise);
+                            Log.print(Log.l.trace, "initAnredeView: success!");
+                            if (json && json.d && json.d.results) {
+                                // Now, we call WinJS.Binding.List to get the bindable list
+                                if (initAnrede && initAnrede.winControl) {
+                                    initAnrede.winControl.data = new WinJS.Binding.List(json.d.results);
+                                }
+                            }
+                        }, function (errorResponse) {
+                            that.removeDisposablePromise(initAnredeSelectPromise);
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                            AppData.setErrorMsg(that.binding, errorResponse);
+                        });
+                        return that.addDisposablePromise(initAnredeSelectPromise);
+                    } else {
+                        if (initAnrede && initAnrede.winControl) {
+                            initAnrede.winControl.data = new WinJS.Binding.List(AppData.initAnredeView.getResults());
+                        }
+                        return WinJS.Promise.as();
+                    }
+                }).then(function () {
+                    if (!AppData.initLandView.getResults().length) {
+                        Log.print(Log.l.trace, "calling select initLandData...");
+                        //@nedra:25.09.2015: load the list of INITLand for Combobox
+                        var initLandSelectPromise = AppData.initLandView.select(function (json) {
+                            that.removeDisposablePromise(initLandSelectPromise);
+                            // this callback will be called asynchronously
+                            // when the response is available
+                            Log.print(Log.l.trace, "initLandView: success!");
+                            if (json && json.d && json.d.results) {
+                                // Now, we call WinJS.Binding.List to get the bindable list
+                                if (initLand && initLand.winControl) {
+                                    initLand.winControl.data = new WinJS.Binding.List(json.d.results);
+                                }
+                            }
+                        }, function (errorResponse) {
+                            that.removeDisposablePromise(initLandSelectPromise);
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                            AppData.setErrorMsg(that.binding, errorResponse);
+                        });
+                        return that.addDisposablePromise(initLandSelectPromise);
+                    } else {
+                        if (initLand && initLand.winControl) {
+                            initLand.winControl.data = new WinJS.Binding.List(AppData.initLandView.getResults());
+                        }
+                        return WinJS.Promise.as();
+                    }
+                }).then(function () {
                     if (!UserInfo.initBenAnwView.getResults().length) {
                         Log.print(Log.l.trace, "calling select initBenAnw...");
                         //@nedra:04.03.2016: load the list of INITBenAnw for Combobox
@@ -144,18 +247,21 @@
                             Log.print(Log.l.trace, "benutzerView: success!");
                             if (json && json.d) {
                                 that.setDataBenutzer(json.d);
+                                loadInitSelection();
                                 setRecordId(that.binding.dataBenutzer.BenutzerVIEWID);
                             }
                         }, function(errorResponse) {
                             if (errorResponse.status === 404) {
                                 // ignore NOT_FOUND error here!
                                 that.setDataBenutzer(getEmptyDefaultValue(UserInfo.benutzerView.defaultValue));
+                                loadInitSelection();
                             } else {
                                 AppData.setErrorMsg(that.binding, errorResponse);
                             }
                         }, recordId);
                     } else {
                         that.setDataBenutzer(getEmptyDefaultValue(UserInfo.benutzerView.defaultValue));
+                        loadInitSelection();
                         return WinJS.Promise.as();
                     }
                 }).then(function() {
@@ -196,7 +302,13 @@
                 Log.call(Log.l.trace, "UserInfo.Controller.");
                 AppData.setErrorMsg(that.binding);
                 var ret;
+                if (that.binding.dataBenutzer.INITLandID &&
+                    typeof that.binding.dataBenutzer.INITLandID === "string") {
+                    that.binding.dataBenutzer.INITLandID = parseInt(that.binding.dataBenutzer.INITLandID);
+                    that.binding.dataBenutzer.LandID = parseInt(that.binding.dataBenutzer.INITLandID);
+                }
                 var dataBenutzer = that.binding.dataBenutzer;
+
                 if (dataBenutzer && AppBar.modified) {
                     var recordId = getRecordId();
                     if (recordId) {
@@ -205,6 +317,7 @@
                             // force reload of userData for Present flag
                             AppBar.modified = false;
                             AppData.getUserData();
+                            loadInitSelection();
                             complete(response);
                         }, function(errorResponse) {
                             // called asynchronously if an error occurs
@@ -222,6 +335,7 @@
                             if (json && json.d) {
                                 that.setDataBenutzer(json.d);
                                 setRecordId(that.binding.dataBenutzer.BenutzerVIEWID);
+                                loadInitSelection();
                                 // force reload of userData for Present flag
                                 AppData.getUserData();
                             }
